@@ -5,10 +5,12 @@ const router = express.Router();
 
 router.get("/sensor/light", async (req, res) => {
   try {
-    const { body } = req;
-    const { id } = body;
+    // const { body } = req;
+    // const { id } = body;
 
-    const result = await light.getLight(id);
+    // const result = await light.getLight(id);
+    console.log("From server: calling get sensor light");
+    res.send('sensor light');
   } catch (error) {
     console.log(error);
   }
