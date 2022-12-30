@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/", requrie("./routes/app"));
+app.use("/", require("./routes/app"));
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
