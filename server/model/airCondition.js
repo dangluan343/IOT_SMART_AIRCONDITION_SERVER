@@ -22,5 +22,9 @@ const airConditionSchema = mongoose.Schema({
     type: Number,
     enum: [0, 1, 2, 3],
   },
+  created_date: {
+    type: Date,
+    default: Date.now,
+  },
 });
-module.exports = mongoose.model("airCondition", airConditionSchema);
+module.exports = mongoose.model("AirCondition", airConditionSchema);

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const sensorSchema = mongoose.Schema({
+const sensorsSchema = mongoose.Schema({
   code: {
     type: String,
     required: true,
@@ -8,5 +8,10 @@ const sensorSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  created_date: {
+    type: Date,
+    default: Date.now,
+  },
 });
-module.exports = mongoose.model("Sensor", sensorSchema);
+
+module.exports = mongoose.model("Sensor", sensorsSchema);

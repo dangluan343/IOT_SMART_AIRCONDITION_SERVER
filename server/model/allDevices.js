@@ -1,8 +1,8 @@
-const airConditionSchema = require("./airCondition");
-const fanSchema = require("./fan");
-const sensorsSchema = require("./sensors");
+const airConditionModel = require("./airCondition");
+const fanModel = require("./fan");
+const sensorsModel = require("./sensors");
 module.exports = {
-  airConditionSchema,
-  fanSchema,
-  sensorsSchema,
+  airConditionModel,
+  fanModel,
+  sensorsModel,
 };

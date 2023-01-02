@@ -14,5 +14,9 @@ const fanSchema = mongoose.Schema({
     enum: [0, 1, 2, 3],
     required: true,
   },
+  created_date: {
+    type: Date,
+    default: Date.now,
+  },
 });
-module.exports = mongoose.model("fan", fanSchema);
+module.exports = mongoose.model("Fan", fanSchema);

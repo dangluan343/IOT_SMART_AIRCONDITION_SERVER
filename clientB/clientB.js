@@ -15,7 +15,7 @@ client.on("message", function (topic, message) {
   //localhost:8080
   const url = `http://localhost:8080/${client}/${nodeName}`;
   const data = { ...JSON.parse(message.toString()), topic: topic };
-  console.log(data);
+  // console.log(data);
   const sendData = async () => {
     await axios({
       method: "post",
