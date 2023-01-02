@@ -4,8 +4,50 @@ const {
   fanModel,
   sensorsModel,
 } = require("../model/allDevices");
-const fan = require("../model/fan");
 const router = express.Router();
+
+router.get("/clientB/home", async (req, res) => {
+  try {
+    const sortLightData = await sensorsModel
+      .find({ code: "light" })
+      .sort({ created_date: -1 });
+    const sortTempData = await sensorsModel
+      .find({ code: "temp" })
+      .sort({ created_date: -1 });
+    const sortHumiData = await sensorsModel
+      .find({ code: "humi" })
+      .sort({ created_date: -1 });
+    const sortFanData = await fanModel.find({}).sort({ created_date: -1 });
+    const sortAirConditionData = await airConditionModel
+      .find({})
+      .sort({ created_date: -1 });
+
+    const lastLightData = sortLightData[0].value;
+    const lastTempData = sortTempData[0].value;
+    const lastHumiData = sortHumiData[0].value;
+    const lastFanData = sortFanData[0];
+    const lastAirConditionData = sortAirConditionData[0];
+    console.log(lastAirConditionData, lastFanData);
+    res.render("home", {
+      light: lastLightData,
+      humi: lastHumiData,
+      temp: lastTempData,
+      fan: {
+        speed: lastFanData.speed,
+        swing: lastFanData.swing,
+      },
+      airCondition: {
+        power: lastAirConditionData.power,
+        mode: lastAirConditionData.mode,
+        temp: lastAirConditionData.temp,
+        swing: lastAirConditionData.swing,
+        wind: lastAirConditionData.wind,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 // ========================light sensor========================
 router.get("/clientB/light/last", async (req, res) => {

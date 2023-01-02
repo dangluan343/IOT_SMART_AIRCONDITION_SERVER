@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    <style>
+      p {
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="sensor">light: <%= light %></p>
+    <p class="sensor">humidity: <%= humi %></p>
+    <p class="sensor">temperature: <%= temp %></p>
+    <div class="activator">
+      <h1 class="name">fan</h1>
+      <p class="code">speed: <span class="value"><%= fan.speed %></span></p>
+      <p class="code">swing: <span class="value"><%= fan.swing %></span></p>
+    </div>
+    <div class="activator">
+      <h1 class="name">Air Condition</h1>
+      <p class="code">
+        power: <span class="value"><%= airCondition.power %></span>
+      </p>
+      <p class="code">
+        mode: <span class="value"><%= airCondition.mode %></span>
+      </p>
+      <p class="code">
+        temp: <span class="value"><%= airCondition.temp %></span>
+      </p>
+      <p class="code">
+        swing: <span class="value"><%= airCondition.swing %></span>
+      </p>
+      <p class="code">
+        wind: <span class="value"><%= airCondition.wind %></span>
+      </p>
+    </div>
+  </body>
+</html>

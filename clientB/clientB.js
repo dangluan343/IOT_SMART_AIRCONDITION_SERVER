@@ -5,6 +5,7 @@ const client = mqtt.connect("mqtt://test.mosquitto.org", {
   clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
   port: 1883,
 });
+
 console.log("console 1:     connected flag  " + client.connected);
 
 //handle incoming messages
