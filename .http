@@ -12,3 +12,18 @@ content-type: application/json
     "light": "123"
 }
 
+#############
+GET http://localhost:8080/test HTTP/1.1
+
+#############
+GET http://localhost:8080/clientB/light/last HTTP/1.1
+#############
+GET http://localhost:8080/clientB/temp/last HTTP/1.1
+#############
+GET http://localhost:8080/clientB/humi/last HTTP/1.1
+#############
+GET http://localhost:8080/clientB/airCondition/last HTTP/1.1
+#############
+GET http://localhost:8080/clientB/fan/last HTTP/1.1
+
+

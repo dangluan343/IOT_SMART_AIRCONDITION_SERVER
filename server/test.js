@@ -9,11 +9,3 @@ const onConnectDB = async () => {
   await mongoose.connect(url).then(() => console.log("Connect"));
 };
 onConnectDB();
-// airCondition
-{
-  power: "1",
-  mode: "1",
-  temp: "23",
-  swing: "0",
-  wind: "2"
-}
