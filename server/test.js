@@ -1,0 +1,10 @@
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+const onConnectDB = async () => {
+  const { DB_USERNAME, DB_PASSWORD } = process.env;
+  const url = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.pxfcb.mongodb.net/iot?retryWrites=true&w=majority`;
+  mongoose.set("strictQuery", true);
+  await mongoose.connect(url).then(() => console.log("Connect"));
+};
+onConnectDB();
