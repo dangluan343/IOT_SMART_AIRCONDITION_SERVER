@@ -1,4 +1,9 @@
 const express = require("express");
+const {
+  airConditionModel,
+  fanModel,
+  sensorsModel,
+} = require("../model/allDevices");
 const router = express.Router();
 
 // ========================light sensor========================

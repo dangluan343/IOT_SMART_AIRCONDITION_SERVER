@@ -4,13 +4,15 @@
   "description": "",
   "main": "clientB.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon clientB.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.2",
     "mqtt": "^4.3.7",
-    "node-fetch": "^3.3.0"
+    "node-fetch": "^3.3.0",
+    "nodemon": "^2.0.20"
   }
 }
