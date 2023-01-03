@@ -4,6 +4,11 @@
   padding: 0;
   outline: none;
   text-decoration: none;
+  transition: 0.3s linear;
+}
+button {
+  border: none;
+  background-color: transparent;
 }
 
 html {
@@ -26,17 +31,16 @@ body {
 }
 
 .app {
-  height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(auto-fit, 200px);
+  grid-template-rows: 160px repeat(auto-fill, 210px);
   grid-template-columns: repeat(auto-fit, 200px);
   /* grid-gap: 1rem 1rem; */
 }
 
 .grid-item {
-  border: 1px solid black;
-  padding: 2rem;
+  /* border: 1px solid black; */
+  padding: 1rem;
 }
 
 .grid-item:first-child {
@@ -71,7 +75,7 @@ body {
 
 .item-1 .banner {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -108,29 +112,80 @@ body {
   line-height: 4.4rem;
 }
 
-.item-5 .box .info {
+.box .info {
   width: 40rem;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  gap: 15px;
+  gap: 0px;
 }
 
-.item-5 .box .info .row {
+.box .info .row {
   height: 50px;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  grid-template-rows: 1fr;
+  margin-bottom: 5px;
 }
 
-.item-5 .box .info .row .code {
+.box .info .row .code {
   font-size: 3rem;
   font-weight: bold;
-  margin-right: 3.5rem;
-  vertical-align: text-bottom;
+  line-height: 50px;
+  vertical-align: middle;
+}
+.box .info .row .value {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.item-5 .box .info .row .value i {
+.box .info .row .value i {
   font-size: 5rem;
-  vertical-align: baseline;
+  cursor: pointer;
+}
+
+.box .info .row .btn-group {
+  vertical-align: text-bottom;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.box .info .row .btn {
+  padding: 0 14px;
+  gap: 10px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50px;
+  min-width: 45px;
+}
+
+.box .info .row .btn.btn-temp {
+  padding: 0 2rem;
+  cursor: auto;
+  justify-self: start;
+}
+.item-6 .box {
+  flex-direction: column;
+  justify-content: space-evenly !important;
+  align-items: flex-start !important;
+  /* gap: 2rem; */
+}
+
+.item-6 .box .info {
+  width: 100%;
+}
+
+.item-6 .box .info .row {
+  grid-template-columns: 30% 70%;
 }
 
 .container .app .box .airCondition-filter.active {
@@ -138,6 +193,50 @@ body {
     brightness(94%) contrast(90%);
 }
 
+.container .footer {
+  background-color: #fff;
+  text-align: right;
+}
+
+.container .footer .send-btn {
+  padding: 7px 2rem;
+  cursor: pointer;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.container .footer .send-btn:hover {
+  background-color: #03b600;
+  color: black;
+}
+
 .fa-fan.active {
-  color: #86e484;
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.active {
+  color: #03b600;
+}
+
+.btn.active {
+  color: white;
+  background-color: #03b600 !important;
+}
+
+#hidden {
+  display: none;
 }

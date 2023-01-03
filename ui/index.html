@@ -17,24 +17,24 @@
         <div class="grid-item item-1">
           <img src="./assets/images/banner.PNG" alt="" class="banner" />
         </div>
-        <div class="grid-item item-2">
+        <div class="grid-item item-2 sensor">
           <div class="box">
             <i class="fa-solid fa-sun"></i>
-            <span class="value">123</span>
+            <span class="value light">123</span>
           </div>
         </div>
-        <div class="grid-item item-3">
+        <div class="grid-item item-3 sensor">
           <div class="box">
-            <i class="fa-solid fa-droplet"></i> <span class="value">123</span>
+            <i class="fa-solid fa-droplet"></i> <span class="value humidity">123</span>
           </div>
         </div>
-        <div class="grid-item item-4">
+        <div class="grid-item item-4 sensor">
           <div class="box">
             <i class="fa-solid fa-temperature-three-quarters"></i>
-            <span class="value">123</span>
+            <span class="value temperature">123</span>
           </div>
         </div>
-        <div class="grid-item item-5">
+        <div class="grid-item item-5 airCondition">
           <div class="box">
             <img
               src="./assets/images/airConditioner.svg"
@@ -44,43 +44,78 @@
             <div class="info">
               <p class="row">
                 <span class="code">Power: </span>
+                <span class="power" id="hidden">1</span>
                 <span class="value"
-                  ><i class="fa-solid fa-toggle-off"></i
+                  ><button onclick="toggle(this, 'airCondition', 'power');"><i class="fa-solid fa-toggle-off"></i></button
                 ></span>
               </p>
               <p class="row">
-                <span class="code">Power: </span>
-                <span class="value"
-                  ><i class="fa-solid fa-toggle-off"></i
-                ></span>
+                <span class="code">Mode: </span>
+                <span class="mode" id="hidden">1</span>
+                <span class="btn-group mode">
+                  <button class="btn active" onclick="toggleMode(this, 'airCondition', 'mode')">0</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'mode')">1</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'mode')">2</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'mode')">3</button>
+                </span>
               </p>
               <p class="row">
-                <span class="code">Power: </span>
-                <span class="value"
-                  ><i class="fa-solid fa-toggle-off"></i
-                ></span>
+                <span class="code">Temperature: </span>
+                <span class="btn-group">
+                  <button class="btn" onclick="changeTemp(-1)">-</button>
+                  <span class="btn btn-temp">23 C</span>
+                  <button class="btn" onclick="changeTemp(+1)">+</button>
+                </span>
               </p>
               <p class="row">
-                <span class="code">Power: </span>
+                <span class="code">Swing: </span>
+                <span class="swing" id="hidden">1</span>
+
                 <span class="value"
-                  ><i class="fa-solid fa-toggle-off"></i
-                ></span>
+                  ><button onclick="toggle(this, 'airCondition', 'swing');"><i class="fa-solid fa-toggle-off"></i
+                    ></button></span>
               </p>
               <p class="row">
-                <span class="code">Power: </span>
-                <span class="value"
-                  ><i class="fa-solid fa-toggle-off"></i
-                ></span>
+                <span class="code">Wind: </span>
+                <span class="wind" id="hidden">0</span>
+                <span class="btn-group wind">
+                  <button class="btn active" onclick="toggleMode(this, 'airCondition', 'wind')">0</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'wind')">1</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'wind')">2</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'wind')">3</button>
+                </span>
               </p>
             </div>
           </div>
         </div>
-        <div class="grid-item item-6">
+        <div class="grid-item item-6 fan">
           <div class="box">
             <i class="fa-solid fa-fan"></i>
-            <div class="info"></div>
+            <div class="info">
+              <p class="row">
+                <span class="code">Swing: </span>
+                <span class="swing" id="hidden">1</span>
+                <span class="value"
+                  ><button onclick="toggle(this, 'fan', 'swing');"><i class="fa-solid fa-toggle-off"></i
+                    ></button></i
+                ></span>
+              </p>
+              <p class="row">
+                <span class="code">Speed: </span>
+                <span class="speed" id="hidden">0</span>
+                <span class="btn-group speed">
+                  <button class="btn active" onclick="toggleMode(this, 'fan', 'speed')">0</button>
+                  <button class="btn" onclick="toggleMode(this, 'fan', 'speed')">1</button>
+                  <button class="btn" onclick="toggleMode(this, 'fan', 'speed')">2</button>
+                  <button class="btn" onclick="toggleMode(this, 'fan', 'speed')">3</button>
+                </span>
+              </p>
+            </div>
           </div>
         </div>
+      </div>
+      <div class="footer">
+        <button class="btn send-btn" onclick="sendData()">Go</button>
       </div>
     </div>
     <script src="./assets/function.js"></script>

@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
 
 const parseJson = bodyParser.json();
@@ -18,6 +19,7 @@ onConnectDB();
 const app = express();
 app.use(parseJson);
 app.use(parseText);
+app.use(cors());
 
 app.set("view engine", "ejs");
 app.set("views", "./views");

@@ -1,4 +1,5 @@
 var mqtt = require("mqtt");
+
 var count = 0;
 var client = mqtt.connect("mqtt://test.mosquitto.org", {
   clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
@@ -47,9 +48,9 @@ var options = {
   qos: 1,
 };
 var topic = "node/clientA";
-var message = "test message A";
-var topic_list = ["topic2", "topic3", "topic4"];
-var topic_o = { topic22: 0, topic33: 1, topic44: 1 };
+// var message = "test message A";
+// var topic_list = ["topic2", "topic3", "topic4"];
+// var topic_o = { topic22: 0, topic33: 1, topic44: 1 };
 console.log("subscribing to topics");
 client.subscribe(topic, { qos: 1 }); //single topic
 // client.subscribe(topic_list, { qos: 1 }); //topic list

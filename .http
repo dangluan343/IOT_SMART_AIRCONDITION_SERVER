@@ -16,6 +16,9 @@ content-type: application/json
 GET http://localhost:8080/test HTTP/1.1
 
 #############
+GET http://localhost:8080/clientB/home HTTP/1.1
+
+#############
 GET http://localhost:8080/clientB/light/last HTTP/1.1
 #############
 GET http://localhost:8080/clientB/temp/last HTTP/1.1
@@ -26,4 +29,20 @@ GET http://localhost:8080/clientB/airCondition/last HTTP/1.1
 #############
 GET http://localhost:8080/clientB/fan/last HTTP/1.1
 
+#########
 
+POST http://localhost:8080/clientB/update/node HTTP/1.1
+content-type: application/json
+
+{
+    "light": "123"
+}
+
+#########
+
+POST http://localhost:8079/new/public HTTP/1.1
+content-type: application/json
+
+{
+        "light": "123"
+}

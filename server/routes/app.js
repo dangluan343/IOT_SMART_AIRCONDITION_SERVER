@@ -5,7 +5,9 @@ const {
   sensorsModel,
 } = require("../model/allDevices");
 const router = express.Router();
+const axios = require("axios");
 
+// ========================home========================
 router.get("/clientB/home", async (req, res) => {
   try {
     const sortLightData = await sensorsModel
@@ -27,8 +29,8 @@ router.get("/clientB/home", async (req, res) => {
     const lastHumiData = sortHumiData[0].value;
     const lastFanData = sortFanData[0];
     const lastAirConditionData = sortAirConditionData[0];
-    console.log(lastAirConditionData, lastFanData);
-    res.render("home", {
+    console.log("from server");
+    res.status(200).send({
       light: lastLightData,
       humi: lastHumiData,
       temp: lastTempData,
@@ -250,9 +252,9 @@ router.post("/clientB/airCondition", async (req, res) => {
     const { power, mode, temp, swing, wind } = req.body;
     const saveData = async () => {
       const data = { power: power, mode: mode, temp: temp, swing: swing, wind };
-      const fanData = await new airConditionModel(data);
+      const airConditionData = await new airConditionModel(data);
       try {
-        await fanData.save((err) => {
+        await airConditionData.save((err) => {
           console.log(err);
         });
       } catch (err) {
@@ -264,6 +266,55 @@ router.post("/clientB/airCondition", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+// ========================send data to devices========================
+router.post("/clientB/update/node", async (req, res) => {
+  console.log(req.body);
+  const url = "http://localhost:8079/new/public";
+  await axios({
+    method: "post",
+    url: url,
+    data: req.body,
+  })
+    .then((res) => {
+      const saveFanData = async () => {
+        const { swing, speed } = req.body.fanData;
+
+        const data = { swing: parseInt(swing), speed: parseInt(speed) };
+        const fanData = await new fanModel(data);
+        try {
+          await fanData.save((err) => {
+            console.log(err);
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      saveFanData();
+      const saveAirData = async () => {
+        const { power, mode, temp, swing, wind } = req.body.airConditionData;
+        const data = {
+          power: parseInt(power),
+          mode: parseInt(mode),
+          temp: parseInt(temp),
+          swing: parseInt(swing),
+          wind: parseInt(wind),
+        };
+        const airData = await new airConditionModel(data);
+        try {
+          await airData.save((err) => {
+            console.log(err);
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      saveAirData();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 // ========================test========================
