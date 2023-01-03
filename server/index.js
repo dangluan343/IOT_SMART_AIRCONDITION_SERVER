@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -14,12 +15,16 @@ const onConnectDB = async () => {
   mongoose.set("strictQuery", true);
   await mongoose.connect(url).then(() => console.log("Connect"));
 };
+
 onConnectDB();
 
 const app = express();
 app.use(parseJson);
 app.use(parseText);
+app.use(express.static("public"));
 app.use(cors());
+
+console.log(__dirname + "\\public");
 
 app.set("view engine", "ejs");
 app.set("views", "./views");

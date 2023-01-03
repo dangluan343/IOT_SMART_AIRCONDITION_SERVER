@@ -4,39 +4,120 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>home</title>
-    <style>
-      p {
-        font-size: 1rem;
-      }
-    </style>
+    <title>Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
-    <p class="sensor">light: <%= light %></p>
-    <p class="sensor">humidity: <%= humi %></p>
-    <p class="sensor">temperature: <%= temp %></p>
-    <div class="activator">
-      <h1 class="name">fan</h1>
-      <p class="code">speed: <span class="value"><%= fan.speed %></span></p>
-      <p class="code">swing: <span class="value"><%= fan.swing %></span></p>
+    <div class="container">
+      <div class="app">
+        <div class="grid-item item-1">
+          <img src="../../images/banner.PNG" alt="" class="banner" />
+        </div>
+        <div class="grid-item item-2 sensor">
+          <div class="box">
+            <i class="fa-solid fa-sun"></i>
+            <span class="value light">123</span>
+          </div>
+        </div>
+        <div class="grid-item item-3 sensor">
+          <div class="box">
+            <i class="fa-solid fa-droplet"></i> <span class="value humidity">123</span>
+          </div>
+        </div>
+        <div class="grid-item item-4 sensor">
+          <div class="box">
+            <i class="fa-solid fa-temperature-three-quarters"></i>
+            <span class="value temperature">123</span>
+          </div>
+        </div>
+        <div class="grid-item item-5 airCondition">
+          <div class="box">
+            <img
+              src="../../images/airConditioner.svg"
+              class="airCondition-filter"
+            />
+
+            <div class="info">
+              <p class="row">
+                <span class="code">Power: </span>
+                <span class="power" id="hidden">1</span>
+                <span class="value"
+                  ><button onclick="toggle(this, 'airCondition', 'power');"><i class="fa-solid fa-toggle-off"></i></button
+                ></span>
+              </p>
+              <p class="row">
+                <span class="code">Mode: </span>
+                <span class="mode" id="hidden">1</span>
+                <span class="btn-group mode">
+                  <button class="btn active" onclick="toggleMode(this, 'airCondition', 'mode')">0</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'mode')">1</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'mode')">2</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'mode')">3</button>
+                </span>
+              </p>
+              <p class="row">
+                <span class="code">Temperature: </span>
+                <span class="btn-group">
+                  <button class="btn" onclick="changeTemp(-1)">-</button>
+                  <span class="btn btn-temp">23 C</span>
+                  <button class="btn" onclick="changeTemp(+1)">+</button>
+                </span>
+              </p>
+              <p class="row">
+                <span class="code">Swing: </span>
+                <span class="swing" id="hidden">1</span>
+
+                <span class="value"
+                  ><button onclick="toggle(this, 'airCondition', 'swing');"><i class="fa-solid fa-toggle-off"></i
+                    ></button></span>
+              </p>
+              <p class="row">
+                <span class="code">Wind: </span>
+                <span class="wind" id="hidden">0</span>
+                <span class="btn-group wind">
+                  <button class="btn active" onclick="toggleMode(this, 'airCondition', 'wind')">0</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'wind')">1</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'wind')">2</button>
+                  <button class="btn" onclick="toggleMode(this, 'airCondition', 'wind')">3</button>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item item-6 fan">
+          <div class="box">
+            <i class="fa-solid fa-fan"></i>
+            <div class="info">
+              <p class="row">
+                <span class="code">Swing: </span>
+                <span class="swing" id="hidden">1</span>
+                <span class="value"
+                  ><button onclick="toggle(this, 'fan', 'swing');"><i class="fa-solid fa-toggle-off"></i
+                    ></button></i
+                ></span>
+              </p>
+              <p class="row">
+                <span class="code">Speed: </span>
+                <span class="speed" id="hidden">0</span>
+                <span class="btn-group speed">
+                  <button class="btn active" onclick="toggleMode(this, 'fan', 'speed')">0</button>
+                  <button class="btn" onclick="toggleMode(this, 'fan', 'speed')">1</button>
+                  <button class="btn" onclick="toggleMode(this, 'fan', 'speed')">2</button>
+                  <button class="btn" onclick="toggleMode(this, 'fan', 'speed')">3</button>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="btn send-btn" onclick="sendData()">Go</button>
+      </div>
     </div>
-    <div class="activator">
-      <h1 class="name">Air Condition</h1>
-      <p class="code">
-        power: <span class="value"><%= airCondition.power %></span>
-      </p>
-      <p class="code">
-        mode: <span class="value"><%= airCondition.mode %></span>
-      </p>
-      <p class="code">
-        temp: <span class="value"><%= airCondition.temp %></span>
-      </p>
-      <p class="code">
-        swing: <span class="value"><%= airCondition.swing %></span>
-      </p>
-      <p class="code">
-        wind: <span class="value"><%= airCondition.wind %></span>
-      </p>
-    </div>
+    <script src="../../function.js"></script>
   </body>
 </html>

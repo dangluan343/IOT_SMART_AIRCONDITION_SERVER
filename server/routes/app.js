@@ -7,8 +7,8 @@ const {
 const router = express.Router();
 const axios = require("axios");
 
-// ========================home========================
-router.get("/clientB/home", async (req, res) => {
+// ========================server========================
+router.get("/server", async (req, res) => {
   try {
     const sortLightData = await sensorsModel
       .find({ code: "light" })
@@ -46,6 +46,51 @@ router.get("/clientB/home", async (req, res) => {
         wind: lastAirConditionData.wind,
       },
     });
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+// ========================home========================
+router.get("/clientB/home", async (req, res) => {
+  try {
+    // const sortLightData = await sensorsModel
+    //   .find({ code: "light" })
+    //   .sort({ created_date: -1 });
+    // const sortTempData = await sensorsModel
+    //   .find({ code: "temp" })
+    //   .sort({ created_date: -1 });
+    // const sortHumiData = await sensorsModel
+    //   .find({ code: "humi" })
+    //   .sort({ created_date: -1 });
+    // const sortFanData = await fanModel.find({}).sort({ created_date: -1 });
+    // const sortAirConditionData = await airConditionModel
+    //   .find({})
+    //   .sort({ created_date: -1 });
+
+    // const lastLightData = sortLightData[0].value;
+    // const lastTempData = sortTempData[0].value;
+    // const lastHumiData = sortHumiData[0].value;
+    // const lastFanData = sortFanData[0];
+    // const lastAirConditionData = sortAirConditionData[0];
+    console.log("from server");
+    // res.status(200).send({
+    //   light: lastLightData,
+    //   humi: lastHumiData,
+    //   temp: lastTempData,
+    //   fan: {
+    //     speed: lastFanData.speed,
+    //     swing: lastFanData.swing,
+    //   },
+    //   airCondition: {
+    //     power: lastAirConditionData.power,
+    //     mode: lastAirConditionData.mode,
+    //     temp: lastAirConditionData.temp,
+    //     swing: lastAirConditionData.swing,
+    //     wind: lastAirConditionData.wind,
+    //   },
+    // });
+    res.render("home");
   } catch (err) {
     console.error(err);
   }
@@ -90,7 +135,7 @@ router.post("/clientB/light", async (req, res) => {
     };
     saveData();
     // console.log(sensorsModel);
-    res.send("sensor light");
+    res.redirect("/clientB/home");
   } catch (error) {
     console.log(error);
   }
@@ -133,7 +178,7 @@ router.post("/clientB/temp", async (req, res) => {
       }
     };
     saveData();
-    res.send("sensor temp");
+    res.redirect("http://localhost:5500/ui/index.html");
   } catch (error) {
     console.log(error);
   }
@@ -319,12 +364,7 @@ router.post("/clientB/update/node", async (req, res) => {
 
 // ========================test========================
 router.get("/test", (req, res) => {
-  const sortDB = async () => {
-    const fanData = await fanModel.aggregate().sort({ created_date: -1 });
-    console.log(fanData);
-  };
-  sortDB();
-  res.send("test");
+  res.redirect("http://localhost:5500/ui/index.html");
 });
 
 module.exports = router;
