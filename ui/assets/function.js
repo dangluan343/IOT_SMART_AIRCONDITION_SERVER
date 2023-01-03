@@ -32,7 +32,7 @@ const fanIcon = document.querySelector(".fan .fa-fan");
 // };
 
 async function firstLoad() {
-  const url = "http://localhost:8080/clientB/home";
+  const url = "http://localhost:8080/server";
   await fetch(url, {
     method: "GET",
   })
@@ -51,7 +51,7 @@ async function firstLoad() {
       fanSpeed.innerHTML = response.fan.speed;
       fanSwing.innerHTML = response.fan.swing;
     })
-    .catch((error) => console.error("Error:", error));
+    .catch((error) => console.log("Error:", error));
 
   // air condition
 
@@ -80,7 +80,7 @@ async function firstLoad() {
   }
   toggleMode(fanSpeed, "fan", "speed");
 }
-firstLoad();
+setTimeout(firstLoad, 1500);
 
 function toggle(currentElement, device, control) {
   const children = currentElement.innerHTML;
