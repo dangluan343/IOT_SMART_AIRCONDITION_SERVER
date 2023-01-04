@@ -107,8 +107,10 @@ router.get("/clientB/light/last", async (req, res) => {
           .sort({ created_date: -1 });
         const lastLightData = sortLightData[0];
         console.log(lastLightData);
+        res.send(lastLightData);
       } catch (err) {
         console.log(err);
+        res.status(500).send(err);
       }
     };
     getLastData();
@@ -131,11 +133,12 @@ router.post("/clientB/light", async (req, res) => {
         });
       } catch (err) {
         console.log(err);
+        res.status(500).send(err);
       }
     };
     saveData();
     // console.log(sensorsModel);
-    res.redirect("/clientB/home");
+    res.redirect("save light data");
   } catch (error) {
     console.log(error);
   }
@@ -151,13 +154,15 @@ router.get("/clientB/temp/last", async (req, res) => {
           .sort({ created_date: -1 });
         const lastTempData = sortTempData[0];
         console.log(lastTempData);
+        res.send(lastTempData);
       } catch (err) {
         console.log(err);
+        res.status(500).send(err);
       }
     };
     getLastData();
     // console.log(sensorsModel);
-    res.send("get last sensor light value");
+    // res.send("save temp data");
   } catch (error) {
     console.log(error);
   }
@@ -173,12 +178,14 @@ router.post("/clientB/temp", async (req, res) => {
         await tempData.save((err) => {
           console.log(err);
         });
+        res.send(data);
       } catch (err) {
+        res.status(500).send(err);
         console.log(err);
       }
     };
     saveData();
-    res.redirect("http://localhost:5500/ui/index.html");
+    res.send("save temp data");
   } catch (error) {
     console.log(error);
   }
@@ -194,13 +201,15 @@ router.get("/clientB/humi/last", async (req, res) => {
           .sort({ created_date: -1 });
         const lastHumiData = sortHumiData[0];
         console.log(lastHumiData);
+        res.send(lastHumiData);
       } catch (err) {
         console.log(err);
+        res.status(500).send(err);
       }
     };
     getLastData();
     // console.log(sensorsModel);
-    res.send("get last sensor light value");
+    // res.send("get last sensor light value");
   } catch (error) {
     console.log(error);
   }
@@ -218,10 +227,11 @@ router.post("/clientB/humi", async (req, res) => {
         });
       } catch (err) {
         console.log(err);
+        res.status(500).send(err);
       }
     };
     saveData();
-    res.send("sensor humi");
+    res.send("save humi data");
   } catch (error) {
     console.log(error);
   }
@@ -235,8 +245,10 @@ router.get("/clientB/fan/last", async (req, res) => {
         const sortFanData = await fanModel.find({}).sort({ created_date: -1 });
         const lastFanData = sortFanData[0];
         console.log(lastFanData);
+        res.send(lastFanData);
       } catch (err) {
         console.log(err);
+        res.status(500).send(err);
       }
     };
     getLastData();
@@ -260,10 +272,11 @@ router.post("/clientB/fan", async (req, res) => {
         });
       } catch (err) {
         console.log(err);
+        res.status(500).send(err);
       }
     };
     saveData();
-    res.send("activator fan");
+    res.send("save fan data");
   } catch (error) {
     console.log(error);
   }
@@ -279,8 +292,10 @@ router.get("/clientB/airCondition/last", async (req, res) => {
           .sort({ created_date: -1 });
         const lastAirConditionData = sortAirConditionData[0];
         console.log(lastAirConditionData);
+        res.send(lastAirConditionData);
       } catch (err) {
         console.log(err);
+        res.status(500).send(err);
       }
     };
     getLastData();
@@ -304,10 +319,11 @@ router.post("/clientB/airCondition", async (req, res) => {
         });
       } catch (err) {
         console.log(err);
+        res.status(500).send(err);
       }
     };
     saveData();
-    res.send("activator airCondition");
+    res.send("save airCondition data");
   } catch (error) {
     console.log(error);
   }
