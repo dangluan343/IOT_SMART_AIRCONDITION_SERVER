@@ -32,6 +32,14 @@ const fanIcon = document.querySelector(".fan .fa-fan");
 // };
 
 async function firstLoad() {
+  const fanBefore = {
+    swing: fanSwing.innerHTML,
+  };
+  const airConditionBefore = {
+    power: airConditionPower.innerHTML,
+    swing: airConditionSwing.innerHTML,
+  };
+
   const url = "http://localhost:8080/server";
   await fetch(url, {
     method: "GET",
@@ -55,7 +63,7 @@ async function firstLoad() {
 
   // air condition
 
-  if (airConditionPower.innerHTML === "1") {
+  if (airConditionPower.innerHTML !== airConditionBefore.power) {
     toggle(
       document.querySelector(".airCondition .power+.value button"),
       "airCondition",
@@ -66,7 +74,7 @@ async function firstLoad() {
 
   let newTemp = tempValue + " C";
   tempData.innerHTML = newTemp;
-  if (airConditionSwing.innerHTML === "1") {
+  if (airConditionSwing.innerHTML !== airConditionBefore.swing) {
     toggle(
       document.querySelector(".airCondition .swing+.value button"),
       "airCondition",
@@ -75,12 +83,13 @@ async function firstLoad() {
   }
   toggleMode(airConditionWind, "airCondition", "wind");
   // fan
-  if (fanSwing.innerHTML === "1") {
+  if (fanSwing.innerHTML !== fanBefore.swing) {
     toggle(document.querySelector(".fan .swing+.value button"), "fan", "swing");
   }
   toggleMode(fanSpeed, "fan", "speed");
 }
-setInterval(firstLoad, 1500);
+setTimeout(firstLoad, 500);
+setInterval(firstLoad, 10000);
 
 function toggle(currentElement, device, control) {
   const children = currentElement.innerHTML;

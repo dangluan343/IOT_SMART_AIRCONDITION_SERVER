@@ -14,8 +14,11 @@ console.log("console 1:     connected flag  " + client.connected);
 app.use(bodyParser.json());
 app.post("/new/public", (req, res) => {
   console.log(req.body);
-  // publish("clientB/airCondition", { ...req.body.airConditionData });
-  // publish("clientB/fan", { ...req.body.fanData });
+  publish(
+    "clientB/airCondition",
+    JSON.stringify({ ...req.body.airConditionData })
+  );
+  publish("clientB/fan", JSON.stringify({ ...req.body.fanData }));
 
   res.send("success!");
 });

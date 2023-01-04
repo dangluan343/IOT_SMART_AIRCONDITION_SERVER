@@ -138,7 +138,7 @@ router.post("/clientB/light", async (req, res) => {
     };
     saveData();
     // console.log(sensorsModel);
-    res.redirect("save light data");
+    res.send("save light data");
   } catch (error) {
     console.log(error);
   }
